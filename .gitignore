@@ -1,0 +1,9 @@
+## Ignorar temporales y compilacion
+bin/
+obj/
+.vs/
+packages/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
