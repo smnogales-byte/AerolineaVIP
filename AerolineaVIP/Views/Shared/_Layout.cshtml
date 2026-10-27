@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
@@ -18,11 +18,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1"
-                    @if (User.Identity.IsAuthenticated) { <li>
-                     @Html.ActionLink("Ver Peliculas", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                @* CAMBIO HU-003 (1 de 2): a esta etiqueta le faltaba el ">" de cierre antes del @if.
+                    Sin él el HTML del menú salía mal formado. No cambia nada más del menú. *@
+                <ul class="navbar-nav flex-grow-1">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Ver Peliculas", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                     }
+                    }
                     else
                     {
                         <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
@@ -30,8 +34,17 @@
                         <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     }
 
+                    @* CAMBIO HU-003 (2 de 2): enlace a la gestión de roles (RolesController).
+                        Solo se muestra a quien tiene el rol Administrador (RF-044, 16.1).
+                        Ocultar el enlace no protege nada: el acceso real se valida en el servidor
+                        con [Authorize(Roles = "Administrador")] en RolesController (RNP-09). *@
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <li>@Html.ActionLink("Roles", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
                 </ul>
-                 @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
