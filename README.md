@@ -62,7 +62,7 @@ Al iniciar, `Global.asax.cs` crea por código los 7 roles y los 7 usuarios inici
 
 ## 4. Usuarios iniciales
 
-Se crean al arrancar la aplicación. Las claves de prueba están definidas en `src/AerolineaVIP/Global.asax.cs` (métodos `CrearSuperUsuario`, `CrearAdministrador`, etc.) y no se publican en este documento.
+Se crean al arrancar la aplicación. Las claves de prueba están definidas en `src/AerolineaVIP/Global.asax.cs` (métodos `CrearSuperUsuario`, `CrearAdministrador`, etc.) y no se publican en este documento. Para revisar cada rol, las claves de prueba están en el **Anexo A** del PDF `docs/Primera_Entrega_Documentacion_Grupo04.pdf`.
 
 | Rol | Usuario |
 |---|---|
@@ -110,6 +110,7 @@ Deben aparecer los 7 roles y los 7 usuarios de la tabla anterior.
 
 ## 8. Documentación
 
-- `docs/Primera_Entrega_Documentacion_Grupo04.pdf`: portada, wireframes aplicados y políticas DP-01 a DP-15.
-- `docs/UX-UI/` y `docs/Gestion/`: resumen de interfaces y de políticas.
+- `docs/Primera_Entrega_Documentacion_Grupo04.pdf`: portada, wireframes aplicados, políticas DP-01 a DP-15, capturas del sistema y Anexo A con las cuentas de prueba.
+- `docs/UX-UI/Wireframes_Aplicados_Grupo04.pdf`: cómo se aplicaron los 21 wireframes y mapa de navegación.
+- `docs/Gestion/Politicas_18_1_DP01_a_DP15_Grupo04.pdf`: políticas del punto 18.1.
 - `docs/Guia_Navegacion_Proyecto.md`: mapa del repositorio y del sistema.
