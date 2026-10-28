@@ -1,5 +1,5 @@
-﻿@model Progra_03.Models.AdminAeronavesVM
-@using Progra_03.Models
+﻿@using Progra_03.Models;
+@model AdminAeronavesVM
 @{
     ViewBag.Title = "Aeronaves y asientos";
     bool puedeCambiar = User.IsInRole("SuperUsuario") || User.IsInRole("Administrador");
