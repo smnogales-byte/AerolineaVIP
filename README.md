@@ -62,17 +62,17 @@ Al iniciar, `Global.asax.cs` crea por código los 7 roles y los 7 usuarios inici
 
 ## 4. Usuarios iniciales
 
-Se crean al arrancar la aplicación. Las claves de prueba están definidas en `src/AerolineaVIP/Global.asax.cs` (métodos `CrearSuperUsuario`, `CrearAdministrador`, etc.) y no se publican en este documento.
+Se crean al arrancar la aplicación desde `src/AerolineaVIP/Global.asax.cs`. Son **cuentas de prueba académicas**: las claves no protegen ningún servicio real y solo sirven para revisar el proyecto.
 
-| Rol | Usuario |
-|---|---|
-| SuperUsuario | superadmin@aerolineavip.com |
-| Administrador | administrador@aerolineavip.com |
-| Operaciones | operaciones@aerolineavip.com |
-| Comercial | comercial@aerolineavip.com |
-| Counter | counter@aerolineavip.com |
-| Pasajero | pasajero@aerolineavip.com |
-| Cliente | cliente@aerolineavip.com |
+| Rol | Usuario | Clave de prueba |
+|---|---|---|
+| SuperUsuario | superadmin@aerolineavip.com | `SuperAdmin#2026` |
+| Administrador | administrador@aerolineavip.com | `Administrador#2026` |
+| Operaciones | operaciones@aerolineavip.com | `Operaciones#2026` |
+| Comercial | comercial@aerolineavip.com | `Comercial#2026` |
+| Counter | counter@aerolineavip.com | `Counter#2026` |
+| Pasajero | pasajero@aerolineavip.com | `Pasajero#2026` |
+| Cliente | cliente@aerolineavip.com | `Cliente#2026` |
 
 Para comprobar que se crearon, después de ejecutar el proyecto por primera vez, abrir una *Nueva consulta* sobre `AerolineaVIP_Identity` en SSMS y ejecutar:
 
@@ -97,7 +97,7 @@ Deben aparecer los 7 roles y los 7 usuarios de la tabla anterior.
 
 - Los pagos y comprobantes son **simulados**: la tarjeta terminada en `0000` se rechaza a propósito para probar el rechazo.
 - Las políticas de negocio (horas de retención de reserva, ventana de check-in, entre otras) son propuestas del documento de la entrega, pendientes de aprobación, y se pueden ajustar en `Web.config`.
-- No hay contraseñas reales ni credenciales de servicios externos en el repositorio.
+- Las claves de la sección 4 son de prueba y de uso académico; el repositorio no contiene contraseñas reales ni credenciales de servicios externos.
 
 ## 7. Solución de problemas
 
