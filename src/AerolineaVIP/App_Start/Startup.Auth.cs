@@ -26,6 +26,9 @@ namespace Progra_03
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
+                // MOD-01: vigencia de sesion; tras 30 minutos sin actividad se pide iniciar sesion de nuevo.
+                ExpireTimeSpan = TimeSpan.FromMinutes(30),
+                SlidingExpiration = true,
                 Provider = new CookieAuthenticationProvider
                 {
                     // Permite a la aplicación validar la marca de seguridad cuando el usuario inicia sesión.

@@ -257,13 +257,17 @@ namespace Progra_03.Controllers
         {
             if (ModelState.IsValid)
             {
-                // CAMBIO PRIMERA ENTREGA (pantalla 4): siempre el mismo mensaje neutral, exista o no la cuenta.
-                // El envio real del enlace queda como simulacion academica (no hay servicio de correo).
+                // MOD-01 (pantalla 4): siempre el mismo mensaje neutral, exista o no la cuenta.
+                // No hay servicio de correo conectado (no se publican credenciales SMTP). En modo academico
+                // (appSettings SimularEnvioCorreo=true) el enlace de restablecimiento se muestra en pantalla.
                 var user = await UserManager.FindByNameAsync(model.Email) ?? await UserManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
-                    // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                    // Aqui iria el envio del enlace de recuperacion cuando exista un servicio de correo.
+                    string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    if (string.Equals(System.Configuration.ConfigurationManager.AppSettings["SimularEnvioCorreo"], "true", StringComparison.OrdinalIgnoreCase))
+                    {
+                        ViewBag.EnlaceRecuperacion = Url.Action("ResetPassword", "Account", new { code = code }, Request.Url.Scheme);
+                    }
                 }
                 return View("ForgotPasswordConfirmation");
             }
