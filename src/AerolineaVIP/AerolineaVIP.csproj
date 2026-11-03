@@ -407,6 +407,7 @@
     <Content Include="Content\img\tarjetas\mastercard.svg" />
     <Content Include="Content\img\tarjetas\visa.svg" />
     <Content Include="Views\Admin\Aeronaves.cshtml" />
+    <Content Include="Views\Admin\EditarPasajero.cshtml" />
     <Content Include="Views\Admin\EditarVuelo.cshtml" />
     <Content Include="Views\Admin\Gestion.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />

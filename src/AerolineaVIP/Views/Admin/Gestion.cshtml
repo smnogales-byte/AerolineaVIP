@@ -99,11 +99,11 @@ else if (Model.Pestana == "pasajeros")
     else
     {
         <table class="table table-sm table-vip">
-            <thead><tr><th>Documento</th><th>Nombres</th><th>Apellidos</th><th>Correo</th><th>Teléfono</th><th>Registrado</th></tr></thead>
+            <thead><tr><th>Documento</th><th>Nombres</th><th>Apellidos</th><th>Correo</th><th>Teléfono</th><th>Registrado</th><th></th></tr></thead>
             <tbody>
                 @foreach (var p in Model.Pasajeros)
                 {
-                    <tr><td>@p.TipoDocumentoCodigo @p.NumeroDocumento</td><td>@p.Nombres</td><td>@p.Apellidos</td><td>@p.Correo</td><td>@p.Telefono</td><td>@Fmt.Fecha(p.FechaRegistro)</td></tr>
+                    <tr><td>@p.TipoDocumentoCodigo @p.NumeroDocumento</td><td>@p.Nombres</td><td>@p.Apellidos</td><td>@p.Correo</td><td>@p.Telefono</td><td>@Fmt.Fecha(p.FechaRegistro)</td><td><a class="btn btn-sm btn-outline-secondary" href="@Url.Action("EditarPasajero", new { id = p.PasajeroId })">Editar</a></td></tr>
                 }
             </tbody>
         </table>

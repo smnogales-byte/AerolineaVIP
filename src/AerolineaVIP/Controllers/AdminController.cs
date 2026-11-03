@@ -99,6 +99,55 @@ namespace Progra_03.Controllers
             return RedirectToAction("Vuelos");
         }
 
+        // MOD-04: el personal autorizado actualiza los datos de contacto del pasajero (el documento no se modifica).
+        [Authorize(Roles = RolesApp.Personal)]
+        public ActionResult EditarPasajero(int id)
+        {
+            var p = db.Pasajeroes.Find(id);
+            if (p == null) return HttpNotFound();
+            return View(new EditarPasajeroVM
+            {
+                PasajeroId = p.PasajeroId,
+                TipoDocumentoCodigo = p.TipoDocumentoCodigo,
+                NumeroDocumento = p.NumeroDocumento,
+                Nombres = p.Nombres,
+                Apellidos = p.Apellidos,
+                FechaNacimiento = p.FechaNacimiento,
+                Correo = p.Correo,
+                Telefono = p.Telefono
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = RolesApp.Personal)]
+        public ActionResult EditarPasajero(EditarPasajeroVM modelo)
+        {
+            var p = db.Pasajeroes.Find(modelo.PasajeroId);
+            if (p == null) return HttpNotFound();
+            // El documento identifica a la persona: no se acepta desde el formulario.
+            modelo.TipoDocumentoCodigo = p.TipoDocumentoCodigo;
+            modelo.NumeroDocumento = p.NumeroDocumento;
+            if (modelo.FechaNacimiento.HasValue && modelo.FechaNacimiento.Value.Date > DateTime.Today)
+                ModelState.AddModelError("FechaNacimiento", "La fecha de nacimiento no puede ser futura.");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    p.Nombres = modelo.Nombres.Trim();
+                    p.Apellidos = modelo.Apellidos.Trim();
+                    p.FechaNacimiento = modelo.FechaNacimiento;
+                    p.Correo = string.IsNullOrWhiteSpace(modelo.Correo) ? null : modelo.Correo.Trim();
+                    p.Telefono = string.IsNullOrWhiteSpace(modelo.Telefono) ? null : modelo.Telefono.Trim();
+                    db.SaveChanges();
+                    TempData["Mensaje"] = "Datos del pasajero actualizados.";
+                    return RedirectToAction("Gestion", new { pestana = "pasajeros" });
+                }
+                catch (Exception ex) { ModelState.AddModelError("", MensajeBase(ex)); }
+            }
+            return View(modelo);
+        }
+
         [Authorize(Roles = RolesApp.Operativos)]
         public ActionResult EditarVuelo(int id)
         {
