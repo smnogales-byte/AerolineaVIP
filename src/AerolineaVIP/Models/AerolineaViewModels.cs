@@ -541,6 +541,41 @@ namespace Progra_03.Models
         }
     }
 
+    // MOD-04: actualizacion autorizada de los datos de contacto de un pasajero. El documento no se modifica.
+    public class EditarPasajeroVM
+    {
+        public int PasajeroId { get; set; }
+
+        [Display(Name = "Tipo de documento")]
+        public string TipoDocumentoCodigo { get; set; }
+
+        [Display(Name = "Número de documento")]
+        public string NumeroDocumento { get; set; }
+
+        [Required(ErrorMessage = "Ingrese los nombres.")]
+        [StringLength(100, ErrorMessage = "Máximo 100 caracteres.")]
+        [Display(Name = "Nombres")]
+        public string Nombres { get; set; }
+
+        [Required(ErrorMessage = "Ingrese los apellidos.")]
+        [StringLength(100, ErrorMessage = "Máximo 100 caracteres.")]
+        [Display(Name = "Apellidos")]
+        public string Apellidos { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Fecha de nacimiento (opcional)")]
+        public DateTime? FechaNacimiento { get; set; }
+
+        [StringLength(256, ErrorMessage = "Máximo 256 caracteres.")]
+        [EmailAddress(ErrorMessage = "El correo no tiene un formato válido.")]
+        [Display(Name = "Correo (opcional)")]
+        public string Correo { get; set; }
+
+        [StringLength(20, ErrorMessage = "Máximo 20 caracteres.")]
+        [Display(Name = "Teléfono (opcional)")]
+        public string Telefono { get; set; }
+    }
+
     public class EditarVueloVM
     {
         public int VueloId { get; set; }
